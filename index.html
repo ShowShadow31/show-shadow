@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Show Shadow - Passion Informatique Pouvourville</title>
+    <style>
+        :root {
+            --brand-color: #0070f3;
+        }
+        .badge {
+            background-color: var(--brand-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            padding: 10px 0;
+            z-index: 100;
+        }
+        /* Mode sombre automatique pour water.css */
+        @media (prefers-color-scheme: dark) {
+            nav { background: #202b38; }
+        }
+        button.nav-btn {
+            background-color: transparent;
+            border: 1px solid var(--brand-color);
+            color: var(--brand-color);
+            cursor: pointer;
+        }
+        button.nav-btn.active {
+            background-color: var(--brand-color);
+            color: white;
+        }
+        .page {
+            display: none; /* Cache les pages par défaut */
+            animation: fadeIn 0.4s ease;
+        }
+        .page.active {
+            display: block; /* Affiche la page active */
+        }
+        .contact-box {
+            border: 2px solid var(--brand-color);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            background-color: rgba(0, 112, 243, 0.05);
+            margin-top: 20px;
+        }
+        .highlight { color: var(--brand-color); font-weight: bold; }
+        h2 { border-bottom: 2px solid var(--brand-color); display: inline-block; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Optimisation tableau mobile */
+        .table-container { overflow-x: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎮 Show Shadow <span class="badge">Toulouse</span></h1>
+        <nav id="main-nav">
+            <button class="nav-btn active" onclick="showPage('home')">Accueil</button>
+            <button class="nav-btn" onclick="showPage('tarifs')">Services & Tarifs</button>
+            <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+        </nav>
+    </header>
+
+    <section id="home" class="page active">
+        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>, un vrai passionné ! ⚡</em></p>
+        <p><strong>👦 14 ans | Élève de 3ème à Pouvourville 🏫</strong></p>
+        <p>L'informatique n'est pas juste un travail pour moi, c'est ma <strong>passion</strong> depuis toujours ! J'adore optimiser et redonner vie aux machines. 💻🔥</p>
+        <p>Que vous ayez besoin d'un nouveau PC ou que votre ancienne machine soit devenue trop lente, je suis là pour vous aider.</p>
+    </section>
+
+    <section id="tarifs" class="page">
+        <h2>🛠️ Mes Services</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Description</th>
+                        <th>Tarif estimé*</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Montage PC 🖥️</strong></td>
+                        <td>Assemblage (neuf/occasion) + tests.</td>
+                        <td>Dès 40€</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nettoyage & Boost 🚀</strong></td>
+                        <td>Dépoussiérage et optimisation logicielle.</td>
+                        <td>Dès 25€</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spécialité Linux 🐧</strong></td>
+                        <td>Installation pour sauver vos PC.</td>
+                        <td>Dès 20€</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conseil Achat 💡</strong></td>
+                        <td>Guide de composants sur-mesure.</td>
+                        <td>10€ (à distance)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Site sur-mesure 🌐</strong></td>
+                        <td>Vitrines légers, ultra-rapides et modernes.</td>
+                        <td>Dès 50€</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><small><em>*Tous les prix sont étudiés au cas par cas selon la complexité.</em></small></p>
+    </section>
+
+    <section id="contact" class="page">
+        <div class="contact-box">
+            <h3>🚀 Un projet ? Un PC en panne ?</h3>
+            <p>Soutenez un jeune du quartier qui adore ce qu'il fait ! 🙌</p>
+            <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
+            <p><em>🏠 Intervention rapide à Pouvourville, Rangueil, Ramonville ou à distance.</em></p>
+        </div>
+    </section>
+
+    <hr>
+    <footer>
+        <p><small>© 2026 - Show Shadow par Elouen - Fait avec ❤️ sous Debian 13</small></p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // 1. Cacher toutes les pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // 2. Désactiver tous les boutons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 3. Afficher la page demandée
+            document.getElementById(pageId).classList.add('active');
+
+            // 4. Activer le bon bouton
+            // On cherche le bouton qui contient le bon ID dans son appel onclick
+            const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(pageId));
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
