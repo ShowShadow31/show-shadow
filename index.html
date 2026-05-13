@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Informatique Toulouse</title>
+    <title>Show Shadow - Maintenance Informatique Toulouse</title>
     <style>
         :root { --brand: #0070f3; }
-        nav { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #444; padding-bottom: 10px; overflow-x: auto; }
-        .page { display: none; }
+        nav { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #444; padding-bottom: 10px; overflow-x: auto; scrollbar-width: none; }
+        .page { display: none; animation: fadeIn 0.3s ease; }
         .page.active { display: block; }
-        .card { border: 1px solid #444; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .card { border: 1px solid #444; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); }
         .price { color: var(--brand); font-weight: bold; font-size: 1.2em; }
-        button { cursor: pointer; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         button.active { background: var(--brand); color: white; border-color: var(--brand); }
     </style>
 </head>
@@ -20,75 +20,84 @@
 
     <header>
         <div style="display: flex; align-items: center; gap: 20px;">
-            <img src="showshadow.png" alt="Logo" style="height: 60px; border-radius: 5px;">
-            <h1>Show Shadow</h1>
+            <img src="showshadow.png" alt="Show Shadow Logo" style="height: 60px; border-radius: 5px;">
+            <h1 style="margin:0">Show Shadow</h1>
         </div>
+        <p><em>Services informatiques de proximité à Toulouse.</em></p>
         <nav>
             <button class="nav-btn active" onclick="showPage('home', this)">Accueil</button>
-            <button class="nav-btn" onclick="showPage('pc', this)">Montage PC</button>
+            <button class="nav-btn" onclick="showPage('maintenance', this)">Maintenance & OS</button>
             <button class="nav-btn" onclick="showPage('ssd', this)">Upgrades SSD</button>
             <button class="nav-btn" onclick="showPage('srv', this)">Serveurs</button>
         </nav>
     </header>
 
     <section id="home" class="page active">
-        <p>Expertise informatique locale par <strong>Elouen</strong>.</p>
+        <p>Expertise technique par un étudiant passionné basé à <strong>Pouvourville</strong> et <strong>Rangueil</strong>.</p>
         <ul>
-            <li>Montage de PC personnalisés (Intel/AMD)</li>
-            <li>Installation de Windows 11 et Linux (Debian)</li>
-            <li>Nettoyage et optimisation système</li>
+            <li>Montage de PC fixes sur mesure (Bureautique / Gaming).</li>
+            <li>Installation et configuration de systèmes Linux (Debian) et Windows.</li>
+            <li>Optimisation hardware et nettoyage physique.</li>
         </ul>
-        <p>📍 <em>Secteurs : Pouvourville, Rangueil, Ramonville.</em></p>
     </section>
 
-    <section id="pc" class="page">
-        <h2>🖥️ Montage sur mesure</h2>
+    <section id="maintenance" class="page">
+        <h2>🛠️ Maintenance & Systèmes</h2>
         <div class="card">
-            <h3>Pack Bureautique</h3>
-            <p>PC fluide pour le travail et le web.</p>
-            <span class="price">Dès 450€ (Pièces + Montage)</span>
+            <h3>Installation OS</h3>
+            <p>Installation propre de Windows 11 ou Debian 13 avec drivers optimisés.</p>
+            <span class="price">Forfait : 45€</span>
         </div>
         <div class="card">
-            <h3>Pack Gaming</h3>
-            <p>Optimisé pour les performances en jeu.</p>
-            <span class="price">Dès 850€ (Pièces + Montage)</span>
+            <h3>Remise à neuf PC</h3>
+            <p>Dépoussiérage complet et changement de pâte thermique (Artic MX-6).</p>
+            <span class="price">Forfait : 50€</span>
         </div>
         <div class="card">
-            <h3>Main d'œuvre seule</h3>
-            <p>Vous avez les pièces, je monte le PC.</p>
-            <span class="price">70€</span>
+            <h3>Montage PC</h3>
+            <p>Assemblage de vos composants avec cable management soigné.</p>
+            <span class="price">Forfait : 70€</span>
         </div>
     </section>
 
     <section id="ssd" class="page">
-        <h2>🚀 Boostez votre PC (SSD KingSpec)</h2>
-        <p>Prix tout compris : Matériel + Installation + Transfert de données.</p>
+        <h2>🚀 Boostez votre PC avec KingSpec</h2>
+        <p>Améliorez radicalement la vitesse de votre machine. Prix tout compris (Matériel + Pose + Système).</p>
         <table>
-            <tr><td>KingSpec 256 Go</td><td><strong>65€</strong></td></tr>
-            <tr><td>KingSpec 512 Go</td><td><strong>90€</strong></td></tr>
-            <tr><td>KingSpec 1 To</td><td><strong>140€</strong></td></tr>
-            <tr><td>KingSpec 2 To</td><td><strong>250€</strong></td></tr>
+            <thead>
+                <tr>
+                    <th>Capacité SSD</th>
+                    <th>Prix Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>KingSpec 128 Go</td><td><strong>45€</strong></td></tr>
+                <tr><td>KingSpec 256 Go</td><td><strong>65€</strong></td></tr>
+                <tr><td>KingSpec 512 Go</td><td><strong>95€</strong></td></tr>
+                <tr><td>KingSpec 1 To</td><td><strong>145€</strong></td></tr>
+                <tr><td>KingSpec 2 To</td><td><strong>260€</strong></td></tr>
+            </tbody>
         </table>
     </section>
 
     <section id="srv" class="page">
-        <h2>🍓 Serveurs & Réseau</h2>
+        <h2>🍓 Solutions Serveurs & Cloud</h2>
         <div class="card">
             <h3>Pack Pi-Hole</h3>
-            <p>Bloquez toutes les publicités de votre réseau domestique.</p>
-            <span class="price">90€ (Installation comprise)</span>
+            <p>Suppression des publicités sur tous les appareils de votre maison.</p>
+            <span class="price">Installation : 90€</span>
         </div>
         <div class="card">
-            <h3>Cloud Privé (Nextcloud)</h3>
-            <p>Stockez vos fichiers chez vous, en toute sécurité.</p>
-            <span class="price">160€ (Installation comprise)</span>
+            <h3>Serveur de Fichiers (Nextcloud)</h3>
+            <p>Accédez à vos documents partout sans abonnement mensuel.</p>
+            <span class="price">Installation : 160€</span>
         </div>
     </section>
 
     <footer>
         <hr>
-        <p>Contact : <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p><small>© 2026 Show Shadow - Propulsé par Debian 13</small></p>
+        <p>Contact & Devis : <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
+        <p><small>© 2026 Show Shadow | Propulsé par Debian 13</small></p>
     </footer>
 
     <script>
@@ -97,6 +106,7 @@
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             btn.classList.add('active');
+            window.scrollTo(0,0);
         }
     </script>
 </body>
