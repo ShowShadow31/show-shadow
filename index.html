@@ -4,193 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Expert Tech Toulouse</title>
+    <title>Show Shadow - Maintenance PC Toulouse</title>
     <style>
-        :root {
-            --brand-color: #0070f3;
-            --server-color: #27ae60;
-        }
-        .badge {
-            background-color: var(--brand-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-        }
-        .badge-status {
-            background-color: var(--server-color);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
-        nav {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            position: sticky;
-            top: 0;
-            background: #fff;
-            padding: 10px 0;
-            z-index: 100;
-            border-bottom: 1px solid #eee;
-            overflow-x: auto;
-        }
-        @media (prefers-color-scheme: dark) {
-            nav { background: #202b38; border-bottom: 1px solid #333; }
-        }
+        :root { --brand: #0070f3; }
+        body { text-align: center; }
+        header { margin-bottom: 40px; }
+        .logo { max-width: 180px; border-radius: 12px; margin-bottom: 10px; }
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
         button.nav-btn {
-            background-color: transparent;
-            border: 1px solid var(--brand-color);
-            color: var(--brand-color);
+            background: transparent;
+            border: 1px solid var(--brand);
+            color: var(--brand);
             cursor: pointer;
-            transition: 0.3s;
-            white-space: nowrap;
+            padding: 8px 16px;
         }
-        button.nav-btn.active {
-            background-color: var(--brand-color);
-            color: white;
-        }
-        button.nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,112,243,0.2);
-        }
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-        .page.active {
-            display: block;
-        }
-        .contact-box {
-            border: 2px solid var(--brand-color);
-            padding: 20px;
-            border-radius: 8px;
-            text-align: center;
-            background-color: rgba(0, 112, 243, 0.05);
-            margin-top: 20px;
-        }
-        .highlight { color: var(--brand-color); font-weight: bold; }
-        .server-highlight { color: var(--server-color); font-weight: bold; }
-        h2 { border-bottom: 2px solid var(--brand-color); display: inline-block; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .table-container { overflow-x: auto; }
-        tr:hover { background-color: rgba(0, 112, 243, 0.05); }
-
-        .price-card {
-            border-left: 4px solid var(--server-color);
-            padding-left: 15px;
-            margin: 15px 0;
-            background: rgba(39, 174, 96, 0.05);
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
+        button.nav-btn.active { background: var(--brand); color: white; }
+        .page { display: none; text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid #eee; }
+        .page.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .highlight { color: var(--brand); font-weight: bold; }
+        .info-box { border-left: 4px solid var(--brand); padding-left: 15px; margin: 20px 0; background: rgba(0, 112, 243, 0.05); padding: 10px; }
+        footer { margin-top: 50px; opacity: 0.7; font-size: 0.8em; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🎮 Show Shadow <span class="badge">Toulouse</span> <span class="badge badge-status">Disponible</span></h1>
-        <nav id="main-nav">
-            <button class="nav-btn active" onclick="showPage('home')">Accueil</button>
-            <button class="nav-btn" onclick="showPage('tarifs')">Maintenance PC</button>
-            <button class="nav-btn" onclick="showPage('serveurs')">Serveurs & Pi 5</button>
-            <button class="nav-btn" onclick="showPage('contact')">Contact</button>
+        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
+        <h1>Show Shadow</h1>
+        <nav>
+            <button class="nav-btn active" onclick="showPage('home', this)">Présentation</button>
+            <button class="nav-btn" onclick="showPage('pc', this)">Maintenance PC</button>
+            <button class="nav-btn" onclick="showPage('contact', this)">Contact</button>
         </nav>
     </header>
 
-    <!-- SECTION ACCUEIL -->
     <section id="home" class="page active">
-        <p><em>L'expertise informatique par <span class="highlight">Elouen</span>, passionné et technicien Debian ! ⚡</em></p>
-        <p><strong>👦 14 ans | Tech Enthusiast à Pouvourville 🏫</strong></p>
-        <p>Plus qu'un simple dépannage, je propose des solutions **modernes** et **Open Source**. Spécialiste du hardware et de l'optimisation système sous Linux et Windows.</p>
-        <blockquote>"Ne jetez plus vos vieux PC, transformons-les en machines de guerre."</blockquote>
+        <h2>👦 Présentation</h2>
+        <p>L'expertise informatique par <span class="highlight">Elouen</span>, passionné et technicien local.</p>
+        <p>Basé à <span class="highlight">Pouvourville</span>, je redonne vie à vos ordinateurs avec des solutions modernes.</p>
     </section>
 
-    <!-- SECTION TARIFS CLASSIQUES -->
-    <section id="tarifs" class="page">
-        <h2>🛠️ Maintenance & Boost PC</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Service</th>
-                        <th>Description</th>
-                        <th>Tarif*</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><strong>Montage PC 🖥️</strong></td><td>Assemblage et tests de stabilité.</td><td>Dès 30€</td></tr>
-                    <tr><td><strong>Boost SSD 🚀</strong></td><td>Installation SSD + Clone système.</td><td>20€</td></tr>
-                    <tr><td><strong>Nettoyage 🧹</strong></td><td>Dépoussiérage et changement pâte thermique.</td><td>25€</td></tr>
-                    <tr><td><strong>Spécialité Linux 🐧</strong></td><td>Passage à Debian/Linux Mint (Sécu & Rapidité).</td><td>20€</td></tr>
-                    <tr><td><strong>Reset Password 🔑</strong></td><td>Déblocage session Windows.</td><td>5€</td></tr>
-                </tbody>
-            </table>
+    <section id="pc" class="page">
+        <h2>🛠️ Maintenance PC</h2>
+        <ul>
+            <li><strong>Optimisation SSD :</strong> Remplacement de disque dur (KingSpec).</li>
+            <li><strong>Entretien :</strong> Nettoyage et changement de pâte thermique.</li>
+            <li><strong>Installation OS :</strong> Windows 11 ou Linux (Debian).</li>
+        </ul>
+        <div class="info-box">
+            <p>💾 <strong>Note :</strong> Le prix du SSD dépend du stockage installé.</p>
+            <p>⚙️ <strong>Tarif :</strong> Étudié au <span class="highlight">cas par cas</span> selon la complexité.</p>
         </div>
     </section>
 
-    <!-- NOUVELLE SECTION SERVEURS -->
-    <section id="serveurs" class="page">
-        <h2>🍓 Expertise Raspberry Pi 5 & Home Server</h2>
-        <p>Besoin d'un serveur cloud, d'un bloqueur de pub ou d'un serveur de jeu basse consommation ?</p>
-        
-        <div class="price-card">
-            <h4>📦 Forfait "Pi-Cloud"</h4>
-            <p>Installation de votre <strong>Raspberry Pi 5</strong> avec OS 64-bit optimisé + Docker + Nextcloud ou Plex.</p>
-            <p><strong>Prix : 35€</strong> (Main propre ou à distance)</p>
-        </div>
-
-        <div class="price-card" style="border-left-color: var(--brand-color);">
-            <h4>🛡️ Forfait "Privacy"</h4>
-            <p>Installation de <strong>Pi-hole</strong> ou <strong>AdGuard Home</strong> pour supprimer la pub sur TOUS les appareils de votre maison.</p>
-            <p><strong>Prix : 15€</strong></p>
-        </div>
-
-        <p><small>💡 <em>Je configure aussi les disques NVMe sur Pi 5 pour des débits ultra-rapides.</em></small></p>
-    </section>
-
-    <!-- SECTION CONTACT -->
     <section id="contact" class="page">
-        <div class="contact-box">
-            <h3>🚀 Un projet ? Un diagnostic ?</h3>
-            <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-            <p>🏠 <em>Secteurs : Pouvourville, Rangueil, Ramonville, Castanet.</em></p>
-            <p>💬 Réponse rapide garantie !</p>
-        </div>
+        <h2>✉️ Contact</h2>
+        <p><strong>Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
+        <p>📍 <strong>Secteurs :</strong> Pouvourville, Rangueil, Ramonville.</p>
     </section>
 
-    <hr>
     <footer>
-        <p><small>© 2026 - Show Shadow | Elouen | Propulsé par <span class="highlight">Debian 13</span> & ❤️</small></p>
+        <p>© 2026 - Show Shadow | Propulsé par <span class="highlight">Debian 13</span></p>
     </footer>
 
     <script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-
-            const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
+        function showPage(pageId, btn) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-
-            const activeBtn = Array.from(buttons).find(btn => 
-                btn.getAttribute('onclick').includes("'" + pageId + "'")
-            );
-            if (activeBtn) activeBtn.classList.add('active');
-            
-            // Scroll en haut auto pour mobile
-            window.scrollTo(0,0);
+            btn.classList.add('active');
         }
     </script>
-
 </body>
 </html>
