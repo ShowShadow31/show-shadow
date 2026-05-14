@@ -4,34 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Maintenance PC Toulouse</title>
+    <title>Show Shadow - Maintenance & Solutions Tech</title>
     <style>
         :root { --brand: #0070f3; }
-        body { text-align: center; }
+        body { text-align: center; line-height: 1.6; }
         header { margin-bottom: 40px; }
-        .logo { max-width: 180px; border-radius: 12px; margin-bottom: 10px; }
-        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
-        button.nav-btn {
-            background: transparent;
-            border: 1px solid var(--brand);
-            color: var(--brand);
-            cursor: pointer;
-            padding: 8px 16px;
+        .logo { max-width: 160px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        
+        nav { 
+            display: flex; 
+            justify-content: center; 
+            gap: 12px; 
+            margin-bottom: 35px; 
+            position: sticky; 
+            top: 10px; 
+            z-index: 100;
         }
+        
+        button.nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--brand);
+            color: var(--brand);
+            font-weight: bold;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: 0.3s;
+        }
+        
         button.nav-btn.active { background: var(--brand); color: white; }
-        .page { display: none; text-align: left; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 8px; border: 1px solid #eee; }
-        .page.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .page { 
+            display: none; 
+            text-align: left; 
+            background: #fff; 
+            padding: 25px; 
+            border-radius: 12px; 
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            .page { background: #1c252f; box-shadow: none; border: 1px solid #333; }
+        }
+
+        .page.active { display: block; }
+        
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
         .highlight { color: var(--brand); font-weight: bold; }
-        .info-box { border-left: 4px solid var(--brand); padding-left: 15px; margin: 20px 0; background: rgba(0, 112, 243, 0.05); padding: 10px; }
-        footer { margin-top: 50px; opacity: 0.7; font-size: 0.8em; }
+        
+        .info-box { 
+            border-left: 5px solid var(--brand); 
+            padding: 15px; 
+            margin: 25px 0; 
+            background: rgba(0, 112, 243, 0.08); 
+            border-radius: 0 8px 8px 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th { background-color: var(--brand); color: white; }
+        tr:nth-child(even) { background-color: rgba(0,0,0,0.02); }
+
+        .service-tag {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #eee;
+            color: #666;
+            margin-left: 8px;
+        }
+
+        footer { margin-top: 60px; padding-bottom: 20px; opacity: 0.6; font-size: 0.85em; }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
+        <img src="showshadow.png" alt="Show Shadow Logo" class="logo">
         <h1>Show Shadow</h1>
+        <p><em>Solutions informatiques locales & à distance</em></p>
         <nav>
             <button class="nav-btn active" onclick="showPage('home', this)">Présentation</button>
             <button class="nav-btn" onclick="showPage('pc', this)">Maintenance PC</button>
@@ -39,42 +91,95 @@
         </nav>
     </header>
 
+    <!-- PRÉSENTATION -->
     <section id="home" class="page active">
-        <h2>👦 Présentation</h2>
-        <p>L'expertise informatique par <span class="highlight">Elouen</span>, passionné et technicien local.</p>
-        <p>Basé à <span class="highlight">Pouvourville</span>, je redonne vie à vos ordinateurs avec des solutions modernes.</p>
+        <h2>👦 À propos de moi</h2>
+        <p>Passionné d'informatique et utilisateur quotidien de <span class="highlight">Debian 13</span>, j'ai lancé <strong>Show Shadow</strong> pour mettre mon expérience au service de votre matériel.</p>
+        <p>Mon objectif ? Éviter le gaspillage technologique en optimisant vos machines actuelles pour les rendre plus rapides et sécurisées, que ce soit sous Windows ou Linux.</p>
+        <p>Basé à <span class="highlight">Pouvourville</span>, je combine interventions physiques et services numériques à distance pour répondre à tous vos besoins.</p>
     </section>
 
+    <!-- MAINTENANCE PC & TARIFS -->
     <section id="pc" class="page">
-        <h2>🛠️ Maintenance PC</h2>
-        <ul>
-            <li><strong>Optimisation SSD :</strong> Remplacement de disque dur (KingSpec).</li>
-            <li><strong>Entretien :</strong> Nettoyage et changement de pâte thermique.</li>
-            <li><strong>Installation OS :</strong> Windows 11 ou Linux (Debian).</li>
-        </ul>
+        <h2>🛠️ Services & Tarifs</h2>
+        <p>Voici un aperçu de mes prestations principales :</p>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Prestation</th>
+                    <th>Détails</th>
+                    <th>Tarif estimé</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Upgrade SSD 🚀</strong></td>
+                    <td>Installation hardware & clone système.</td>
+                    <td><em title="Dépend du stockage choisi">Variable*</em></td>
+                </tr>
+                <tr>
+                    <td><strong>Site Web Vitrine 🌐</strong></td>
+                    <td>Création personnalisée à distance.</td>
+                    <td>Dès 60€</td>
+                </tr>
+                <tr>
+                    <td><strong>Reset Password 🔑</strong></td>
+                    <td>Déblocage session Windows.</td>
+                    <td>5€</td>
+                </tr>
+                <tr>
+                    <td><strong>Conseil & Optimisation 📞</strong></td>
+                    <td>Aide au choix de composants (Distance).</td>
+                    <td>À étudier*</td>
+                </tr>
+                <tr>
+                    <td><strong>Installation OS 🐧</strong></td>
+                    <td>Passage propre à Windows ou Linux.</td>
+                    <td>Dès 10€</td>
+                </tr>
+                <tr>
+                    <td><strong>Check-up Santé 🧹</strong></td>
+                    <td>Dépoussiérage et changement pâte thermique.</td>
+                    <td>À étudier*</td>
+                </tr>
+            </tbody>
+        </table>
+
         <div class="info-box">
-            <p>💾 <strong>Note :</strong> Le prix du SSD dépend du stockage installé.</p>
-            <p>⚙️ <strong>Tarif :</strong> Étudié au <span class="highlight">cas par cas</span> selon la complexité.</p>
+            <p>💾 <strong>*Stockage :</strong> Pour les upgrades du SSD, le prix final dépend de la capacité installée (120Go à 2To).</p>
+            <p>⚙️ <strong>Précision :</strong> Chaque cas est unique. Les tarifs définitifs sont <span class="highlight">étudiés au cas par cas</span> selon la complexité de la machine.</p>
         </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="page">
-        <h2>✉️ Contact</h2>
-        <p><strong>Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p>📍 <strong>Secteurs :</strong> Pouvourville, Rangueil, Ramonville.</p>
+        <h2>✉️ Me contacter</h2>
+        <p>Une question ? Un devis gratuit ? N'hésitez pas à m'envoyer un message :</p>
+        <div style="background: rgba(0, 112, 243, 0.05); padding: 20px; border-radius: 8px; text-align: center;">
+            <p><strong>📧 Email :</strong> <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
+            <hr>
+            <p>📍 <strong>Zones couvertes :</strong> Pouvourville, Rangueil, Ramonville.</p>
+            <p>💻 <strong>Services Web & Conseil :</strong> Disponibles partout en France (Distance).</p>
+        </div>
     </section>
 
     <footer>
-        <p>© 2026 - Show Shadow | Propulsé par <span class="highlight">Debian 13</span></p>
+        <p>© 2026 - Show Shadow | Passionné de Tech | Propulsé par <span class="highlight">Debian</span></p>
     </footer>
 
     <script>
         function showPage(pageId, btn) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
             document.getElementById(pageId).classList.add('active');
             btn.classList.add('active');
+            
+            // Retour en haut de page fluide
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
+
 </body>
 </html>
