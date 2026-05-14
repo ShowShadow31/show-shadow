@@ -3,111 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <title>Show Shadow - Maintenance Informatique Toulouse</title>
     <style>
-        :root { --brand: #0070f3; }
-        nav { display: flex; gap: 15px; margin-bottom: 30px; border-bottom: 1px solid #444; padding-bottom: 10px; overflow-x: auto; scrollbar-width: none; }
-        .page { display: none; animation: fadeIn 0.3s ease; }
-        .page.active { display: block; }
-        .card { border: 1px solid #444; padding: 15px; border-radius: 8px; margin-bottom: 15px; background: rgba(255, 255, 255, 0.05); }
-        .price { color: var(--brand); font-weight: bold; font-size: 1.2em; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        button.active { background: var(--brand); color: white; border-color: var(--brand); }
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; max-width: 600px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
+        header { text-align: center; margin-bottom: 30px; }
+        .logo { height: 70px; border-radius: 8px; }
+        
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        button { padding: 8px 16px; border: 1px solid #ccc; background: white; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        button.active { background: #0070f3; color: white; border-color: #0070f3; }
+
+        .page { display: none; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .active-page { display: block; }
+        
+        .highlight { color: #0070f3; font-weight: bold; }
+        .info-box { background: #eef6ff; border-left: 4px solid #0070f3; padding: 10px 15px; margin-top: 15px; font-style: italic; }
     </style>
+    <title>Show Shadow - Toulouse</title>
 </head>
 <body>
 
     <header>
-        <div style="display: flex; align-items: center; gap: 20px;">
-            <img src="showshadow.png" alt="Show Shadow Logo" style="height: 60px; border-radius: 5px;">
-            <h1 style="margin:0">Show Shadow</h1>
-        </div>
-        <p><em>Services informatiques de proximité à Toulouse.</em></p>
-        <nav>
-            <button class="nav-btn active" onclick="showPage('home', this)">Accueil</button>
-            <button class="nav-btn" onclick="showPage('maintenance', this)">Maintenance & OS</button>
-            <button class="nav-btn" onclick="showPage('ssd', this)">Upgrades SSD</button>
-            <button class="nav-btn" onclick="showPage('srv', this)">Serveurs</button>
-        </nav>
+        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
+        <h1>Show Shadow</h1>
     </header>
 
-    <section id="home" class="page active">
-        <p>Expertise technique par un étudiant passionné basé à <strong>Pouvourville</strong> et <strong>Rangueil</strong>.</p>
+    <nav>
+        <button class="nav-btn active" onclick="ouvrirPage('presentation', this)">Présentation</button>
+        <button class="nav-btn" onclick="ouvrirPage('pc', this)">Trucs sur PC</button>
+        <button class="nav-btn" onclick="ouvrirPage('contact', this)">Contact</button>
+    </nav>
+
+    <!-- PRÉSENTATION -->
+    <section id="presentation" class="page active-page">
+        <h2>À propos</h2>
+        <p>Je suis un étudiant passionné de tech basé à <span class="highlight">Pouvourville et Rangueil</span>.</p>
+        <p>Mon outil principal est <span class="highlight">Debian 13</span>, que j'utilise pour le développement et la maintenance système.</p>
+    </section>
+
+    <!-- TRUCS SUR PC -->
+    <section id="pc" class="page">
+        <h2>Services Informatiques</h2>
+        <p>Je m'occupe de l'entretien et de l'amélioration de vos ordinateurs fixes :</p>
         <ul>
-            <li>Montage de PC fixes sur mesure (Bureautique / Gaming).</li>
-            <li>Installation et configuration de systèmes Linux (Debian) et Windows.</li>
-            <li>Optimisation hardware et nettoyage physique.</li>
+            <li><strong>Optimisation :</strong> Nettoyage complet et changement de pâte thermique.</li>
+            <li><strong>Système :</strong> Installation propre de Windows ou Linux (Debian).</li>
+            <li><strong>Hardware :</strong> Installation de nouveaux composants.</li>
         </ul>
-    </section>
 
-    <section id="maintenance" class="page">
-        <h2>🛠️ Maintenance & Systèmes</h2>
-        <div class="card">
-            <h3>Installation OS</h3>
-            <p>Installation propre de Windows 11 ou Debian 13 avec drivers optimisés.</p>
-            <span class="price">Forfait : 45€</span>
-        </div>
-        <div class="card">
-            <h3>Remise à neuf PC</h3>
-            <p>Dépoussiérage complet et changement de pâte thermique (Artic MX-6).</p>
-            <span class="price">Forfait : 50€</span>
-        </div>
-        <div class="card">
-            <h3>Montage PC</h3>
-            <p>Assemblage de vos composants avec cable management soigné.</p>
-            <span class="price">Forfait : 70€</span>
+        <div class="info-box">
+            <p>🚀 <strong>Upgrade SSD :</strong> Le prix dépend du stockage installé.</p>
+            <p>⚙️ <strong>Tarification :</strong> Les prix sont étudiés au cas par cas selon la complexité de l'intervention.</p>
         </div>
     </section>
 
-    <section id="ssd" class="page">
-        <h2>🚀 Boostez votre PC avec KingSpec</h2>
-        <p>Améliorez radicalement la vitesse de votre machine. Prix tout compris (Matériel + Pose + Système).</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Capacité SSD</th>
-                    <th>Prix Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>KingSpec 128 Go</td><td><strong>45€</strong></td></tr>
-                <tr><td>KingSpec 256 Go</td><td><strong>65€</strong></td></tr>
-                <tr><td>KingSpec 512 Go</td><td><strong>95€</strong></td></tr>
-                <tr><td>KingSpec 1 To</td><td><strong>145€</strong></td></tr>
-                <tr><td>KingSpec 2 To</td><td><strong>260€</strong></td></tr>
-            </tbody>
-        </table>
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+        <h2>Me contacter</h2>
+        <p>Pour un diagnostic ou un devis personnalisé :</p>
+        <p><strong>📧 Email :</strong> <span class="highlight">show.shadow.tech@proton.me</span></p>
+        <p>📍 Secteurs d'intervention : Toulouse Sud, Pouvourville, Rangueil, Ramonville.</p>
     </section>
-
-    <section id="srv" class="page">
-        <h2>🍓 Solutions Serveurs & Cloud</h2>
-        <div class="card">
-            <h3>Pack Pi-Hole</h3>
-            <p>Suppression des publicités sur tous les appareils de votre maison.</p>
-            <span class="price">Installation : 90€</span>
-        </div>
-        <div class="card">
-            <h3>Serveur de Fichiers (Nextcloud)</h3>
-            <p>Accédez à vos documents partout sans abonnement mensuel.</p>
-            <span class="price">Installation : 160€</span>
-        </div>
-    </section>
-
-    <footer>
-        <hr>
-        <p>Contact & Devis : <a href="mailto:show.shadow.tech@proton.me">show.shadow.tech@proton.me</a></p>
-        <p><small>© 2026 Show Shadow | Propulsé par Debian 13</small></p>
-    </footer>
 
     <script>
-        function showPage(id, btn) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-            btn.classList.add('active');
-            window.scrollTo(0,0);
+        function ouvrirPage(idPage, bouton) {
+            let pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active-page'));
+
+            let boutons = document.querySelectorAll('.nav-btn');
+            boutons.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(idPage).classList.add('active-page');
+            bouton.classList.add('active');
         }
     </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; max-width: 600px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
+        header { text-align: center; margin-bottom: 30px; }
+        .logo { height: 70px; border-radius: 8px; }
+        
+        nav { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; }
+        button { padding: 8px 16px; border: 1px solid #ccc; background: white; cursor: pointer; border-radius: 4px; transition: 0.3s; }
+        button.active { background: #0070f3; color: white; border-color: #0070f3; }
+
+        .page { display: none; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .active-page { display: block; }
+        
+        .highlight { color: #0070f3; font-weight: bold; }
+        .info-box { background: #eef6ff; border-left: 4px solid #0070f3; padding: 10px 15px; margin-top: 15px; font-style: italic; }
+    </style>
+    <title>Show Shadow - Toulouse</title>
+</head>
+<body>
+
+    <header>
+        <img src="showshadow.png" alt="Logo Show Shadow" class="logo">
+        <h1>Show Shadow</h1>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="ouvrirPage('presentation', this)">Présentation</button>
+        <button class="nav-btn" onclick="ouvrirPage('pc', this)">Trucs sur PC</button>
+        <button class="nav-btn" onclick="ouvrirPage('contact', this)">Contact</button>
+    </nav>
+
+    <!-- PRÉSENTATION -->
+    <section id="presentation" class="page active-page">
+        <h2>À propos</h2>
+        <p>Je suis un étudiant passionné de tech basé à <span class="highlight">Pouvourville et Rangueil</span>.</p>
+        <p>Mon outil principal est <span class="highlight">Debian 13</span>, que j'utilise pour le développement et la maintenance système.</p>
+    </section>
+
+    <!-- TRUCS SUR PC -->
+    <section id="pc" class="page">
+        <h2>Services Informatiques</h2>
+        <p>Je m'occupe de l'entretien et de l'amélioration de vos ordinateurs fixes :</p>
+        <ul>
+            <li><strong>Optimisation :</strong> Nettoyage complet et changement de pâte thermique.</li>
+            <li><strong>Système :</strong> Installation propre de Windows ou Linux (Debian).</li>
+            <li><strong>Hardware :</strong> Installation de nouveaux composants.</li>
+        </ul>
+
+        <div class="info-box">
+            <p>🚀 <strong>Upgrade SSD :</strong> Le prix dépend du stockage installé.</p>
+            <p>⚙️ <strong>Tarification :</strong> Les prix sont étudiés au cas par cas selon la complexité de l'intervention.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="page">
+        <h2>Me contacter</h2>
+        <p>Pour un diagnostic ou un devis personnalisé :</p>
+        <p><strong>📧 Email :</strong> <span class="highlight">show.shadow.tech@proton.me</span></p>
+        <p>📍 Secteurs d'intervention : Toulouse Sud, Pouvourville, Rangueil, Ramonville.</p>
+    </section>
+
+    <script>
+        function ouvrirPage(idPage, bouton) {
+            let pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active-page'));
+
+            let boutons = document.querySelectorAll('.nav-btn');
+            boutons.forEach(b => b.classList.remove('active'));
+
+            document.getElementById(idPage).classList.add('active-page');
+            bouton.classList.add('active');
+        }
+    </script>
+
 </body>
 </html>
